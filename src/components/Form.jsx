@@ -24,7 +24,7 @@ class Form extends React.Component {
             <input
               data-testid="name-input"
               type="text"
-              name="nome"
+              name="name"
               id="name"
               value={ cardName }
               onChange={ onInputChange }
@@ -72,8 +72,8 @@ class Form extends React.Component {
             <input
               data-testid="attr3-input"
               type="number"
-              name="attr2"
-              id="atter2"
+              name="attr3"
+              id="atter3"
               value={ cardAttr3 }
               onChange={ onInputChange }
             />
@@ -121,6 +121,7 @@ class Form extends React.Component {
           <button
             data-testid="save-button"
             type="submit"
+            name="submit"
             onClick={ onSaveButtonClick }
             disabled={ isSaveButtonDisabled }
           >
