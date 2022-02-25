@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   rare: 'normal',
   trunfo: false,
   botao: true,
+  salvalista: [],
 };
 
 class App extends React.Component {
@@ -59,44 +60,84 @@ validaBotao = () => {
   }
 }
 
-render() {
-  const {
-    name,
-    description,
-    attr1,
-    attr2,
-    attr3,
-    image,
-    rare,
-    trunfo,
-    botao,
-  } = this.state;
-  return (
-    <>
-      <Form
-        cardName={ name }
-        cardDescription={ description }
-        cardAttr1={ attr1 }
-        cardAttr2={ attr2 }
-        cardAttr3={ attr3 }
-        cardImage={ image }
-        cardRare={ rare }
-        cardTrunfo={ trunfo }
-        onInputChange={ this.eventoDeMudancas }
-        isSaveButtonDisabled={ botao }
-      />
-      <Card
-        cardName={ name }
-        cardDescription={ description }
-        cardAttr1={ attr1 }
-        cardAttr2={ attr2 }
-        cardAttr3={ attr3 }
-        cardImage={ image }
-        cardRare={ rare }
-        cardTrunfo={ trunfo }
-      />
-    </>
-  );
-}
+   salvaBotao = (event) => {
+     event.preventDefault();
+     const {
+       name,
+       description,
+       attr1,
+       attr2,
+       attr3,
+       image,
+       rare,
+       trunfo,
+       botao } = this.state;
+
+     const novoCartão = {
+       name,
+       description,
+       attr1,
+       attr2,
+       attr3,
+       image,
+       rare,
+       trunfo,
+       botao,
+     };
+
+     this.setState((stateInittial) => ({
+       salvalista: [...stateInittial.salvalista, novoCartão],
+       name: '',
+       description: '',
+       attr1: 0,
+       attr2: 0,
+       attr3: 0,
+       image: '',
+       trunfo: false,
+       rare: 'normal',
+
+     }));
+   }
+
+   render() {
+     const {
+       name,
+       description,
+       attr1,
+       attr2,
+       attr3,
+       image,
+       rare,
+       trunfo,
+       botao,
+     } = this.state;
+     return (
+       <>
+         <Form
+           cardName={ name }
+           cardDescription={ description }
+           cardAttr1={ attr1 }
+           cardAttr2={ attr2 }
+           cardAttr3={ attr3 }
+           cardImage={ image }
+           cardRare={ rare }
+           cardTrunfo={ trunfo }
+           onInputChange={ this.eventoDeMudancas }
+           isSaveButtonDisabled={ botao }
+           onSaveButtonClick={ this.salvaBotao }
+         />
+         <Card
+           cardName={ name }
+           cardDescription={ description }
+           cardAttr1={ attr1 }
+           cardAttr2={ attr2 }
+           cardAttr3={ attr3 }
+           cardImage={ image }
+           cardRare={ rare }
+           cardTrunfo={ trunfo }
+         />
+       </>
+     );
+   }
 }
 export default App;
