@@ -13,6 +13,7 @@ const INITIAL_STATE = {
   trunfo: false,
   botao: true,
   salvalista: [],
+  hasTrunfo: false,
 };
 
 class App extends React.Component {
@@ -87,6 +88,8 @@ validaBotao = () => {
 
      this.setState((stateInittial) => ({
        salvalista: [...stateInittial.salvalista, novoCartão],
+       hasTrunfo: [...stateInittial.salvalista, novoCartão]
+         .some((element) => element.trunfo),
        name: '',
        description: '',
        attr1: 0,
@@ -110,6 +113,7 @@ validaBotao = () => {
        rare,
        trunfo,
        botao,
+       hasTrunfo,
      } = this.state;
      return (
        <>
@@ -125,6 +129,8 @@ validaBotao = () => {
            onInputChange={ this.eventoDeMudancas }
            isSaveButtonDisabled={ botao }
            onSaveButtonClick={ this.salvaBotao }
+           hasTrunfo={ hasTrunfo }
+
          />
          <Card
            cardName={ name }
