@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import CardList from './components/CardList';
 
 const INITIAL_STATE = {
   name: '',
@@ -114,6 +115,7 @@ validaBotao = () => {
        trunfo,
        botao,
        hasTrunfo,
+       salvalista,
      } = this.state;
      return (
        <>
@@ -142,6 +144,8 @@ validaBotao = () => {
            cardRare={ rare }
            cardTrunfo={ trunfo }
          />
+         <CardList salvalista={ salvalista } />
+
        </>
      );
    }
